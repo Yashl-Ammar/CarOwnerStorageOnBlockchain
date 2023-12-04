@@ -57,7 +57,6 @@ const transferOwner = async (req, res) => {
         const chassisNumber = req.params.ChassisNumber;
 
         const car = await Car.findOne({ chassisNumber }).populate('owner', 'fname lname');
-        console.log(car);
 
         if (!car) {
             return res.status(404).json({ error: 'Car not found' });
