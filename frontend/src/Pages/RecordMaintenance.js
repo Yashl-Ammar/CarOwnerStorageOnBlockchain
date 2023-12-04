@@ -54,6 +54,12 @@ function RecordMaintenancePage() {
             },{headers: {
                 token: localStorage.getItem('token')
             }});
+            
+            await axios.put('http://localhost:3002/Car/carMaintenanceRecord2/' + vid , {
+                maintenanceDetails: data.maintenance
+            },{headers: {
+                token: localStorage.getItem('token')
+            }});
 
             navigate('/home');
         } catch (e) {

@@ -53,6 +53,12 @@ function RecordAccidentPage() {
             }, {headers: {
                 token: localStorage.getItem('token')
             }});
+            
+            await axios.put('http://localhost:3002/Car/carAccidentRecord2/' + vid , {
+                accidentDetails: data.accident
+            }, {headers: {
+                token: localStorage.getItem('token')
+            }});
 
             navigate('/home');
         } catch (e) {

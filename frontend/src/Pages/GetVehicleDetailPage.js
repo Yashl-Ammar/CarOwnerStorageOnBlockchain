@@ -28,9 +28,11 @@ function GetVehicleDetailsPage() {
     const onsubmit = async (data) => {
         console.log(data)
         try {
-            await axios.get('http://localhost:3002/Car/getCarDetail/'+data.search ,{headers: {
+            await axios.get('http://localhost:3002/Car/getCarDetail2/'+data.search ,{headers: {
                 token: localStorage.getItem('token')
             }});
+            
+            
 
             
             navigate('/vehicle/' + data.search );

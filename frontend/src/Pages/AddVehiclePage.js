@@ -41,6 +41,20 @@ function AddVehiclePage() {
                     token: localStorage.getItem('token')
                 }
             })
+            
+            await axios.post('http://localhost:3002/Car/registerCar2',{
+                manufactureDate : data.mdate,
+                numberPlate : data.nplate,
+                chassisNumber : data.cnumber,
+                previousOwners : prevOwners,
+                make : data.make,
+                model : data.model,
+                varient : data.varient,
+            },{
+                headers:{
+                    token: localStorage.getItem('token')
+                }
+            })
     
             navigate('/home');
         } catch (error) {

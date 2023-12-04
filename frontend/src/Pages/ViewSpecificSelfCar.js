@@ -19,7 +19,7 @@ function ViewSpecificSelfVehiclePage() {
     },[])
 
     const fetchData = async () => {
-        let response = await axios.get('http://localhost:3002/Car/getCarDetail/' + vid, {headers: {
+        let response = await axios.get('http://localhost:3002/Car/getCarDetail2/' + vid, {headers: {
             token: localStorage.getItem('token')
         }});
 
@@ -86,7 +86,7 @@ function ViewSpecificSelfVehiclePage() {
                     
                         <div className="my-4">
                             <h3 className="text-xl font-bold">Chassis Number:</h3>
-                            <p>{data ? data.chassisNumber : ''}</p>
+                            <p>{vid}</p>
                         </div>
                         <div className="my-4">
                             <h3 className="text-xl font-bold">Number Plate:</h3>
