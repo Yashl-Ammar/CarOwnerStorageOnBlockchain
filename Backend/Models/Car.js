@@ -23,8 +23,6 @@ const carSchema=new mongoose.Schema({
     },
     previousOwners:{
         type: [String],
-        require:true,
-        default: None
     },
     make:{
         type: String,
