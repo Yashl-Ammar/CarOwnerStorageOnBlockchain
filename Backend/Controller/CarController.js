@@ -51,22 +51,29 @@ const getAllCars=async(req,res)=>{
         res.status(500).json({ error: 'Internal Server Error' });
     }
 }
-const transferOwner=async(req,res)=>{
+const transferOwner = async (req, res) => {
     try {
-        const { email } = req.body; 
-        const chassisNumber = req.params.ChassisNumebr;
+        const { email } = req.body;
+        const chassisNumber = req.params.ChassisNumber;
 
-        const car = await Car.findOne({chassisNumber});
+        // Use findOne to get a single document instead of find
+        const car = await Car.findOne({ chassisNumber }).populate('owner', 'fname lname');
+        console.log(car);
 
         if (!car) {
             return res.status(404).json({ error: 'Car not found' });
         }
-        const owner=await Owner.findOne({email})
+
+        const owner = await Owner.findOne({ email });
+
         if (!owner) {
-            return res.status(404).json({ error: 'Owner with this email Not exist' });
+            return res.status(404).json({ error: 'Owner with this email does not exist' });
         }
+
+
+        car.previousOwners.push(`${car.owner.fname} ${car.owner.lname}`);
         car.owner = owner._id;
-        
+
         await car.save();
 
         res.json({ message: 'Car ownership transferred successfully', car });
@@ -74,7 +81,8 @@ const transferOwner=async(req,res)=>{
         console.error('Error transferring car ownership:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-}
+};
+
 const recordAccident=async(req,res)=>{
     try{
         const chassisNumber= req.params.ChassisNumber
