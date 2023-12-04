@@ -56,7 +56,6 @@ const transferOwner = async (req, res) => {
         const { email } = req.body;
         const chassisNumber = req.params.ChassisNumber;
 
-        // Use findOne to get a single document instead of find
         const car = await Car.findOne({ chassisNumber }).populate('owner', 'fname lname');
         console.log(car);
 
