@@ -6,7 +6,7 @@ const registerCar=async(req,res)=>{
         const owner=req.user._id
         let car= await Car.findOne({chassisNumber})
         if(car) return res.status(400).send("Car Already Exist")
-        owner =new Owner({
+        car =new Car({
             owner,
             manufactureDate,
             numberPlate,
@@ -31,7 +31,7 @@ const registerCar=async(req,res)=>{
 }
 const getCarDetail=async(req,res)=>{
     try{
-        const chassisNumber=req.params.ChassisNumebr
+        const chassisNumber=req.params.ChassisNumber
         let car= await Car.findOne({chassisNumber})
         if(!car) return res.status(400).send("Car Not Found")
         else res.send(car)
@@ -66,6 +66,7 @@ const transferOwner=async(req,res)=>{
             return res.status(404).json({ error: 'Owner with this email Not exist' });
         }
         car.owner = owner._id;
+        
         await car.save();
 
         res.json({ message: 'Car ownership transferred successfully', car });
@@ -76,7 +77,7 @@ const transferOwner=async(req,res)=>{
 }
 const recordAccident=async(req,res)=>{
     try{
-        const chassisNumber= req.params.ChassisNumebr
+        const chassisNumber= req.params.ChassisNumber
         const{accidentDetails}=req.body
         const car =await Car.findOne({chassisNumber})
 
@@ -95,7 +96,7 @@ const recordAccident=async(req,res)=>{
 }
 const recordMaintenance=async(req,res)=>{
     try{
-        const chassisNumber= req.params.ChassisNumebr
+        const chassisNumber= req.params.ChassisNumber
         const{maintenanceDetails}=req.body
         const car =await Car.findOne({chassisNumber})
 
