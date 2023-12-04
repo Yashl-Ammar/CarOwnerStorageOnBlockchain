@@ -43,7 +43,7 @@ const getCarDetail=async(req,res)=>{
 }
 const getAllCars=async(req,res)=>{
     try{
-        const car=await Car.find({})
+        const car=await Car.find({owner:req.user._id})
         if(!car) return res.status(400).send("No Car Found")
         else res.send(car)
     } catch (error) {
