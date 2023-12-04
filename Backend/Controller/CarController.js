@@ -90,7 +90,7 @@ const recordAccident=async(req,res)=>{
         if (!car) {
             return res.status(404).json({ error: 'Car not found' });
         }
-        car.accidentDetails=accidentDetails
+        car.accidentDetails.push(`${accidentDetails}`)
         car.accidentCount++
         await car.save()
        
@@ -109,7 +109,7 @@ const recordMaintenance=async(req,res)=>{
         if (!car) {
             return res.status(404).json({ error: 'Car not found' });
         }
-        car.maintenanceDetails=maintenanceDetails
+        car.maintenanceDetails.push(`${maintenanceDetails}`)
         car.maintenanceCount++
         await car.save()
        
