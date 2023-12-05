@@ -1,9 +1,9 @@
 const { Web3 } = require('web3');
 const abi = require("../utils/abi.js");
 const web3 = new Web3('http://127.0.0.1:7545');
-const contractAddress = "0x393d37b5Fdcc6a20420faD4ebedbdAeEc67aC25F"; // Replace with your contract's address
+const contractAddress = "0x66ffac0F56ed74f259ECEC4078B0268DDa0bF05e"; // Replace with your contract's address
 const carDataContract = new web3.eth.Contract(abi, contractAddress);
-const accountAddress = "0x9e87CC6d7b21985FbB55B53F1219232900a05f78";
+const accountAddress = "0xdd6FFf541475a38Df4341A6DeAe5c170774c11A3";
 
 const recordMaintenance2 = async (req, res) => {
     try {
